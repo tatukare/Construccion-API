@@ -33,7 +33,6 @@ router.post('/', (req, res) => {
     return res.status(400).json({ message: 'User and email are required' });
 
   const user = usersList.filter((u) => u.email === email);
-  console.log(user);
   if (user.length > 0)
     return res.status(409).json({ message: 'User already exists' });
 
@@ -52,6 +51,23 @@ router.delete('/:id', (req, res) => {
   const userIndex = getIndexOfUser(usersList, id);
   usersList.splice(userIndex, 1);
   res.status(202).json(user);
+});
+
+router.put('/:id', (req, res) => {
+  const { name, email } = req.body;
+  const { id } = req.params;
+
+  if (!name || !email)
+    return res.status(400).json({ message: 'User and email are required' });
+
+  const user = getUserById(usersList, id);
+
+  if (!user) return res.status(400).json({ error: "User don't exist" });
+
+  const userIndex = getIndexOfUser(usersList, id);
+
+  usersList[`${userIndex}`] = { id: +id, name, email };
+  res.status(201).json({ message: 'User modified' });
 });
 
 module.exports = router;
