@@ -1,7 +1,6 @@
 const getUserById = (users, id) => {
   const user = users.filter((el) => el.id === +id);
 
-  console.log(user);
   return user[0];
 };
 
