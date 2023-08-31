@@ -2,13 +2,13 @@
 
 ### Video Test
 
-[Link video API test]()
+[Link video API test](https://youtu.be/3Ne6UaG66kI)
 
 ---
 
 ## Endpoints
 
-### Get Users List
+### GET Users List
 
 ```bash
 curl --location 'http://localhost:3000/api/users' \
